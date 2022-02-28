@@ -1,0 +1,5 @@
+export const GET_TOKEN = "GET_TOKEN"
+export const GET_PLAYLIST = "GET_PLAYLIST"
+export const PLAYLIST_ERROR = "PLAYLIST_ERROR"
+export const TOKEN_ERROR = "TOKEN_ERROR"
+export const UPDATE_USER_PLAYLIST = "UPDATE_USER_PLAYLIST"
