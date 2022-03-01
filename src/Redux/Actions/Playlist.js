@@ -9,10 +9,8 @@ const headers = {
         "Content-Type": "application/x-www-form-urlencoded"
     },
     auth: {
-        //   username: clientId,
-        //   password: clientSecret
-        username: '3a5f48d1050a4afe89875b1d1ad9d793',
-        password: '81597203681743aa84ba208515b2084a'
+          username:clientId,
+          password:clientSecret
     }
 };
 
@@ -49,10 +47,6 @@ export function getFeaturePlaylist() {
 
 export function updateUserPlayList(data) {
     return async (dispatch) => {
-        // debugger
-        //  const selectedPlaylist = localStorage.getItem('selectedPlaylist') ? JSON.parse(localStorage.getItem('selectedPlaylist')) : []
-
-        //  selectedPlaylist.push(data)
 
         dispatch(userPlayList(data))
 

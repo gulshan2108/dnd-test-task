@@ -6,7 +6,8 @@ const INIT_STATE = {
     token: false,
     error: false,
     featurePlaylist: [],
-    selectedPlaylist
+    selectedPlaylist,
+    apiPlayList:[]
 }
 
 export const Playlist = (state= INIT_STATE, action) => {
@@ -16,22 +17,21 @@ export const Playlist = (state= INIT_STATE, action) => {
                 ...state,
                 token: action.payload
             }
-            // state = Object.assign({}, state, {playList: [...state.playList, action.payload]})
         break;
         case GET_PLAYLIST: 
             action.payload?.forEach((item)=>{
                 item['title'] = item.name
             })
-            
-            action.payload?.filter((el)=>{
-                return state.selectedPlaylist?.some((item)=>{
-                    return item.id===el.id
+
+            var newPlaylist= action.payload.filter(function(objFromA) {
+                return !state.selectedPlaylist.find(function(objFromB) {
+                  return objFromA.id === objFromB.id
                 })
-            })
-            console.log(55555, action.payload)
+              })
             state = {
                 ...state,
-                featurePlaylist:action.payload
+                featurePlaylist:newPlaylist,
+                apiPlayList:action.payload,
             }
         break;
         case TOKEN_ERROR: 
@@ -50,9 +50,15 @@ export const Playlist = (state= INIT_STATE, action) => {
             if(action.payload?.sourceLaneId==='lane1' && action?.payload?.targetLaneId==='lane2'){
                 state.selectedPlaylist = [...state.selectedPlaylist, ...state.featurePlaylist?.filter((el)=>{return el.id===action.payload.cardId})]
             }
+            var newPlaylist= state.apiPlayList.filter(function(objFromA) {
+                return !state.selectedPlaylist.find(function(objFromB) {
+                  return objFromA.id === objFromB.id
+                })
+              })
             localStorage.setItem('selectedPlaylist', JSON.stringify(state.selectedPlaylist))
             state = {
                 ...state,
+                featurePlaylist:newPlaylist
             }
         break;
     }

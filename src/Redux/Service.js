@@ -15,7 +15,6 @@ const Axios = axios.create({
 });  
 
 Axios.interceptors.request.use((config)=>{
-    console.log(4444, config)
     config.headers.common.Authorization = localStorage.getItem('authToken')
     return config;
 })
