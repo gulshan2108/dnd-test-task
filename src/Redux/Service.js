@@ -21,4 +21,3 @@ Axios.interceptors.request.use((config)=>{
 
 export default Axios;
 
-// axios.defaults.headers.common['Authorization'] = 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))

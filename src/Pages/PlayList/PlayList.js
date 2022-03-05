@@ -25,6 +25,8 @@ const PlayList = () => {
   }, [playlist?.token])
 
   useEffect(() => {
+   
+
     setState({
       ...state,
       featurePlayList: playlist?.featurePlaylist,
@@ -45,22 +47,21 @@ const PlayList = () => {
         label: `${state.featurePlayList.length}`,
         title: 'Feature Playlist',
         cards: state.featurePlayList,
-        droppable: false
       },
       {
         id: 'lane2',
         label: `${state.userPlayList.length}`,
         title: 'User Playlist',
         cards: state.userPlayList,
-       
-        
+
+
       }
     ]
   }
-  
+
   return (
     <div>
-      <Board data={data} handleDragEnd={handleChange}  />
+      <Board data={data} handleDragEnd={handleChange} />
     </div>
   )
 }
